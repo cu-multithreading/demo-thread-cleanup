@@ -8,9 +8,11 @@ using std::endl;
 
 using std::string;
 
-void countTo1Million()
+void countTo1Million(int threadNo)
 {
-	for(int i = 0; i < 1000000; i++) {}
+	for(int i = 0; i < 1000000 * threadNo; i++) {}
+
+	cout << "Thread " << threadNo << " finished." << endl;
 }
 
 int main(int argc, char * argv[])
@@ -19,7 +21,7 @@ int main(int argc, char * argv[])
 
 	for(int i = 0; i < 10; i++)
 	{
-		threads.push_back(std::thread{countTo1Million});
+		threads.push_back(std::thread{countTo1Million, i});
 	}
 
 	//Run with '-forgetful' to skip thread cleanup (will cause error)
@@ -28,9 +30,10 @@ int main(int argc, char * argv[])
 		cout << "Joining threads" << endl;
 
 		//Join all threads
-		for(auto & iter : threads)
+		for(int i = 0; i < threads.size(); i++)
 		{
-			iter.join();
+			threads[i].join();
+			cout << "Thread " << i << " joined." << endl;
 		}
 	}	
 
