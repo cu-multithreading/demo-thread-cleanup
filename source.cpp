@@ -1,9 +1,12 @@
 #include<iostream>
 #include<vector>
 #include<thread>
+#include<string>
 
 using std::cout;
 using std::endl;
+
+using std::string;
 
 void countTo1Million()
 {
@@ -19,18 +22,17 @@ int main(int argc, char * argv[])
 		threads.push_back(std::thread{countTo1Million});
 	}
 
-
 	//Run with '-forgetful' to skip thread cleanup (will cause error)
-	if( argc < 2 || argv[1] != "-forgetful")
+	if( argc == 1 || string(argv[1]) != "-forgetful")
 	{
+		cout << "Joining threads" << endl;
+
 		//Join all threads
 		for(auto & iter : threads)
 		{
 			iter.join();
 		}
-	}
-
-	std::cin.get();
+	}	
 
 	return 0;
 }
