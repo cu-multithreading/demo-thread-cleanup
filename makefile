@@ -1,4 +1,5 @@
 .PHONY: run
+.PHONY: clean
 g_flags=-pthread
 
 all: demo.prog
@@ -11,3 +12,6 @@ debug:
 
 run: demo.prog
 	@echo "Run the demo with and without 'forgetful' as the first argument"
+
+clean:
+	rm *.o *.prog *.h.gch -f
