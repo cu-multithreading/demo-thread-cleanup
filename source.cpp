@@ -25,7 +25,7 @@ int main(int argc, char * argv[])
 	}
 
 	//Run with '-forgetful' to skip thread cleanup (will cause error)
-	if( argc == 1 || string(argv[1]) != "-forgetful")
+	if( argc == 1 || string(argv[1]) != "forgetful")
 	{
 		cout << "Joining threads" << endl;
 

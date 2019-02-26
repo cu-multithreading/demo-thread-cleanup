@@ -10,4 +10,4 @@ debug:
 	g++ $(g_flags) -g source.cpp -o demo.prog
 
 run: demo.prog
-	@echo "Run the demo with and without '-forgetful'"
+	@echo "Run the demo with and without 'forgetful' as the first argument"
